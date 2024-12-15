@@ -1,52 +1,82 @@
+
 interface Teacher {
-    firstName: string;
-    fullTimeEployee: Boolean;
-    lastName: string;
-    location: string;
-    contract: Boolean;
-}
-
-const teacher3: Teacher = {
-    firstName: 'John',
-    lastName: 'Doe',
-    location: 'London',
-    contract: false,
-    fullTimeEployee: true
-};
+    firstName: string;               
+    lastName: string;                
+    fullTimeEmployee: boolean;             
+    location: string;                
+    [key: string]: any;              
+  }
   
-  console.log(teacher3);
+  interface Directors extends Teacher {
+    numberOfReports: number;         
+  }
+  
 
-
-interface Directors {
-    firstName: string;
-    lastName: string;
-    location: string;
-    fullTimeEmployee: Boolean;
-    numberOfReports: number;
-}
-
-const director1: Directors = {
+  const teacher1: Teacher = {
+    firstName: 'Jane',
+    lastName: 'Doe',
+    fullTimeEmployee: true,
+    location: 'Pretoria',
+    contract: true, 
+  };
+  
+  console.log(teacher1);
+  
+  const director1: Directors = {
     firstName: 'John',
     lastName: 'Doe',
-    location: 'London',
+    location: 'Durban',
     fullTimeEmployee: true,
     numberOfReports: 17,
   };
+  
   console.log(director1);
+  
+  interface printTeacherFunction {
+    (firstName: string, lastName: string): string;
+  }
+  
+  const printTeacher: printTeacherFunction = (firstName, lastName) => {
+    return `${firstName.charAt(0)}. ${lastName}`;
+  };
+  
 
-class printTeacher {
+  console.log(printTeacher("Jane", "Doe"));   
+  console.log(printTeacher("John", "Doe")); 
+  
+
+  interface StudentClassConstructor {
     firstName: string;
     lastName: string;
-    location: string;
-    contract: Boolean;
-    fullTimeEployee: Boolean
+  }
+  
 
-    constructor(firstName: string, lastName: string) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+  interface StudentClassInterface {
+    workOnHomework(): string;
+    displayName(): string;
+  }
+  
+
+  class StudentClass implements StudentClassInterface {
+    firstName: string;
+    lastName: string;
+  
+    constructor({ firstName, lastName }: StudentClassConstructor) {
+      this.firstName = firstName;
+      this.lastName = lastName;
     }
-}
-
-const teachers: Teacher = new printTeacher('John', 'Doe');
-
-console.log(printTeacher)
+  
+    workOnHomework(): string {
+      return "Currently working";
+    }
+  
+    displayName(): string {
+      return this.firstName;
+    }
+  }
+  
+  
+  const student = new StudentClass({ firstName: 'John', lastName: 'Doe' });
+  
+  console.log(student.displayName());       
+  console.log(student.workOnHomework());  
