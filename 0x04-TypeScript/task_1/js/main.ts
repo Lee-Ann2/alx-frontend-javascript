@@ -80,3 +80,4 @@ interface Teacher {
   
   console.log(student.displayName());       
   console.log(student.workOnHomework());  
+  console.log(student);
