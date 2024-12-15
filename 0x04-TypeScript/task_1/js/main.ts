@@ -11,7 +11,7 @@ const teacher3: Teacher = {
     lastName: 'Doe',
     location: 'London',
     contract: false,
-    fullTimeEployee: undefined
+    fullTimeEployee: true
 };
   
   console.log(teacher3);
@@ -33,3 +33,20 @@ const director1: Directors = {
     numberOfReports: 17,
   };
   console.log(director1);
+
+class printTeacher {
+    firstName: string;
+    lastName: string;
+    location: string;
+    contract: Boolean;
+    fullTimeEployee: Boolean
+
+    constructor(firstName: string, lastName: string) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+}
+
+const teachers: Teacher = new printTeacher('John', 'Doe');
+
+console.log(printTeacher)
